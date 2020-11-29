@@ -20,9 +20,8 @@
     </a>
     <a href="https://nodejs.org/en/">
         <img
-	    style="background-color:black;"
             alt="Node JS"
-            src="https://nodejs.org/static/images/logo.svg"
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
             width="150">
     </a>
 </div>
