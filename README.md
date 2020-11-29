@@ -1,4 +1,25 @@
 # Music Playlist Manager
+<div align="center">
+    <a href="https://reactjs.org/">
+        <img
+            alt="React"
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+            width="150" height="150">
+    </a>
+    <a href="https://nodejs.org/en/">
+        <img
+            alt="Node JS"
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
+            width="150" height="150">
+    </a>
+    <a href="https://www.postgresql.org/">
+        <img
+            alt="PostgreSQL"
+            src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg"
+            width="150" height="150">
+    </a>
+</div>
+
 ### Repo Link: https://github.com/vatsal121/music_playlist_manager_react_node
 
 <div align="center">
@@ -11,20 +32,7 @@
 
 </div>
 
-<div align="center">
-    <a href="https://reactjs.org/">
-        <img
-            alt="React"
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-            width="150">
-    </a>
-    <a href="https://nodejs.org/en/">
-        <img
-            alt="Node JS"
-            src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
-            width="150">
-    </a>
-</div>
+
 
 
 ### Music Playlist Manager using React JS and Node JS
