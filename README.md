@@ -15,11 +15,12 @@
     <a href="https://reactjs.org/">
         <img
             alt="React"
-            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K"
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
             width="150">
     </a>
     <a href="https://nodejs.org/en/">
         <img
+	    style="background-color:black;"
             alt="Node JS"
             src="https://nodejs.org/static/images/logo.svg"
             width="150">
@@ -47,6 +48,12 @@
   - Once installed, Run project by executing `npm start`.
   - Server APIs is located at `http://localhost:8000`
   - Front end React app is located at `http://localhost:3000/`
+
+
+### Please See:
+  - It is a good practice to run the terminal/command prompt with admin privileges.
+  - If for some reason npm start doesn't work on the server project just update the package.json file in the script section, set the "start" property to `node server.js` from `nodemon server.js`
+  - Another alternative is fire the following command in your command prompt/terminal `npm install nodemon -g` and then re-run the `npm start` command in the server project folder.
 
 
 ### Features
