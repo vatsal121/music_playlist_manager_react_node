@@ -1,0 +1,12 @@
+.copyright-area {
+    background: #202020;
+    padding: 25px 0;
+}
+.copyright-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #878787;
+}
+.copyright-text p a {
+    color: #ff5e14;
+}

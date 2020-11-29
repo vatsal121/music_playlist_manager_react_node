@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Office Demo By Vatsal Chauhan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1 text-center">Office Demo by <i class="text-info">Vatsal Chauhan</i></span>
+    </nav>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <p class="lead">
+                <div class="row">
+                    <button id="addNewOffice" type="button" class="btn btn-success">Add new office</button>
+                </div>
+                <hr class="my-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button id="displayOffices" type="button" class="btn btn-primary">Display offices</button>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" min="1" step="1" id="officeCodeInput"
+                            placeholder="Enter office code to search" class="form-control">
+                        <br>
+                        <button id="displayOfficesById" type="button" class="btn btn-primary">Display offices by
+                            id</button>
+                    </div>
+                </div>
+            </p>
+            <hr class="my-4">
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 1%;">Office Code</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Address Line 1</th>
+                        <th>Address Line 2</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Postal Code</th>
+                        <th>Territory</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="displayOfficeDataContainer">
+                    <tr>
+                        <td colspan="10" class="text-center">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="officeModal" tabindex="-1" role="dialog" aria-labelledby="officeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="officeModalLabel">Office Data</h5>
+                        <button type="button" class="close clearInputs" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                                <p class="text-info"><span class="text-danger">**</span> Fields marked with <span
+                                        class="text-danger">`*`</span> are mandatory</p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="officecode">Office Code<span class="text-danger">*</span></label>
+                                    <input type="text" disabled class="form-control" id="officecode" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="city">City<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="city" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addressline1">Address Line 1<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="addressline1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addressline2">Address Line 2</label>
+                                <input type="text" class="form-control" id="addressline2">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="country">Country<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="country" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="postalcode">Postal Code<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="postalcode" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="territory">Territory</label>
+                                <input type="text" class="form-control" id="territory">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary clearInputs" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveChangesOnAddAndEdit">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteOfficeModal" tabindex="-1" role="dialog"
+            aria-labelledby="deleteOfficeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteOfficeModalLabel">Delete Office Record</h5>
+                        <button type="button" class="close clearInputs" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lead">Are you sure you want to delete this record?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary clearInputs" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="btnDeleteRecord">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <script>
+        'use strict'
+        $(document).ready(function () {
+            let officeList = [];
+            let officeID = 0;
+
+            function clearAllInputs() {
+                $("#officecode").val("");
+                $("#city").val("");
+                $("#phone").val("");
+                $("#addressline1").val("");
+                $("#addressline2").val("");
+                $("#state").val("");
+                $("#country").val("");
+                $("#postalcode").val("");
+                $("#territory").val("");
+
+                officeID = 0;
+            }
+
+            $(".clearInputs").click(function () {
+                clearAllInputs();
+            })
+
+            function getOfficesList(id) {
+                let url = "/offices";
+                if (id) {
+                    url += `/${id}`;
+                }
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    success: function (result) {
+                        if (result) {
+                            if ('offices' in result) {
+                                officeList = result.offices;
+                                let _tableBodyHTML = "";
+                                officeList.forEach((office, index) => {
+                                    _tableBodyHTML += "<tr>";
+                                    _tableBodyHTML +=
+                                        `<td>${office.officecode}</td>`;
+                                    _tableBodyHTML += `<td>${office.city}</td>`;
+                                    _tableBodyHTML += `<td>${office.phone}</td>`;
+                                    _tableBodyHTML +=
+                                        `<td>${office.addressline1}</td>`;
+                                    _tableBodyHTML +=
+                                        `<td>${office.addressline2}</td>`;
+                                    _tableBodyHTML += `<td>${office.state}</td>`;
+                                    _tableBodyHTML += `<td>${office.country}</td>`;
+                                    _tableBodyHTML +=
+                                        `<td>${office.postalcode}</td>`;
+                                    _tableBodyHTML +=
+                                        `<td>${office.territory}</td>`;
+
+
+                                    _tableBodyHTML += "<td>";
+                                    _tableBodyHTML +=
+                                        `<button type='button' id='Edit_${index}' class='editDetail btn btn-warning'>Edit</button>`;
+                                    _tableBodyHTML += "|";
+                                    _tableBodyHTML +=
+                                        `<button type='button' id='Delete_${index}' class='deleteDetail btn btn-danger'>Delete</button>`;
+                                    _tableBodyHTML += "</td>";
+
+                                    _tableBodyHTML += "</tr>";
+                                });
+                                if (officeList.length <= 0) {
+                                    _tableBodyHTML +=
+                                        '<tr><td colspan="10" class="text-center">No data available</td></tr>';
+                                }
+                                $("#displayOfficeDataContainer").html(_tableBodyHTML);
+                            }
+                        }
+
+                    },
+
+                    error: function (xhr, textStatus, errorThrown) {
+
+                    }
+
+                });
+            }
+
+            function addEditOffices(officeId) {
+                let url = "/offices";
+                let typeOfReq = "post";
+                let officeObj = {
+                    officecode: $("#officecode").val(),
+                    city: $("#city").val(),
+                    phone: $("#phone").val(),
+                    addressline1: $("#addressline1").val(),
+                    addressline2: $("#addressline2").val(),
+                    state: $("#state").val(),
+                    country: $("#country").val(),
+                    postalcode: $("#postalcode").val(),
+                    territory: $("#territory").val(),
+                }
+                if (!officeObj.officecode || !officeObj.city || !officeObj.phone || !officeObj.country || !
+                    officeObj.postalcode) {
+                    alert("fields cannot be empty. ");
+                    return false;
+                }
+                if (officeId) {
+                    url += `/${officeId}`;
+                    typeOfReq = "put";
+                    delete officeObj.officecode;
+                }
+                $.ajax({
+                    url: url,
+                    type: typeOfReq,
+                    contentType: 'application/x-www-form-urlencoded',
+                    data: officeObj,
+                    success: function (result) {
+                        if (result && result.statusCode === 200) {
+                            alert("Successfully updated data");
+                            clearAllInputs();
+                            $("#officeModal").modal("hide");
+                            getOfficesList(null);
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+
+                });
+            }
+
+            // Display All office records
+            $("#displayOffices").click(function (e) {
+                getOfficesList(null);
+            })
+
+            // Display office records by ID
+            $("#displayOfficesById").click(function (e) {
+                let officeCodeInput = $("#officeCodeInput").val();
+                if (!officeCodeInput) {
+                    return alert("Please enter ID to search");
+                }
+                getOfficesList(officeCodeInput);
+            })
+
+
+            // Edit Records
+            $(document).on("click", ".editDetail", function (e) {
+                let getIndex = parseInt($(this).attr("id").split("_")[1]);
+                let officeObj = officeList[getIndex];
+
+                $("#officecode").val(officeObj.officecode);
+                $("#city").val(officeObj.city);
+                $("#phone").val(officeObj.phone);
+                $("#addressline1").val(officeObj.addressline1);
+                $("#addressline2").val(officeObj.addressline2);
+                $("#state").val(officeObj.state);
+                $("#country").val(officeObj.country);
+                $("#postalcode").val(officeObj.postalcode);
+                $("#territory").val(officeObj.territory);
+
+                officeID = officeObj.officecode;
+                $("#officecode").attr("disabled", true);
+                $("#officeModal").modal("show");
+            });
+
+            $("#saveChangesOnAddAndEdit").click(function () {
+                addEditOffices(officeID);
+            });
+
+
+            // Delete office record
+            $(document).on("click", ".deleteDetail", function () {
+                let getIndex = parseInt($(this).attr("id").split("_")[1]);
+                let officeObj = officeList[getIndex];
+
+                officeID = officeObj.officecode;
+                $("#deleteOfficeModal").modal("show");
+            });
+
+            $("#btnDeleteRecord").click(function () {
+                $.ajax({
+                    url: `/offices/${officeID}`,
+                    type: "delete",
+                    success: function (result) {
+                        if (result && result.statusCode === 200) {
+                            alert("Successfully deleted office record");
+                            clearAllInputs();
+                            getOfficesList(null);
+                            $("#deleteOfficeModal").modal("hide");
+                        }
+                    },
+
+                    error: function (xhr, textStatus, errorThrown) {
+                        debugger
+                        if (xhr.status === 500) {
+                            if (xhr.responseJSON) {
+                                alert(xhr.responseJSON.message);
+                                clearAllInputs();
+                                $("#deleteOfficeModal").modal("hide");
+                            }
+                        }
+                        console.error(errorThrown);
+                    }
+
+                });
+            });
+
+
+            $("#addNewOffice").click(function () {
+                clearAllInputs();
+                $("#officecode").attr("disabled", false);
+                $("#officeModal").modal("show");
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>

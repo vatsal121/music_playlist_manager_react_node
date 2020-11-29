@@ -1,0 +1,14 @@
+GET http://localhost:8000/playlist HTTP/1.1
+
+###
+GET http://localhost:8000/tracks HTTP/1.1
+
+###
+POST http://localhost:8000/tracks HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+id=1&playlist_id=1&title=Meet and Vatsal&uri=www.abc.com&master_id=1
+
+
+###
+DELETE http://localhost:8000/tracks/1 HTTP/1.1
